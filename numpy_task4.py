@@ -2,31 +2,38 @@
 
 import numpy as np
 
-list_for_array = [10,11,33,22,11,22,33,44,5,6,5,33,6,33,44,55,6,10,2,3]
+list_for_array = []
 
-"""
-i=0
 
-while i != "q":
+while True:
 	a=input("enter number for array: ")
-	list_for_array.append(a)
+	if a == "q":
+		break
+	list_for_array.append(int(a))
 	
-"""
 
 length_list = len(list_for_array)
 array_shapes = []
 
-for i in range(2, length_list//2 + 1):
-	if (length_list % i) == 0:
-		array_shapes.append((i,length_list//i))
 
-print("Shapes available are: ")
+def generate_shapes(list_for_array_shapes,length):
+	for i in range(2, length//2 + 1):
+		if (length % i) == 0:
+			list_for_array_shapes.append((i,length//i))
+
+
+generate_shapes(array_shapes,length_list)
 
 if len(array_shapes)==0:
 	print(0)
-else:
-	for i,shape in enumerate(array_shapes) :
-		print(i,shape)
+	new_num = int(input("Enter one more number to create a valid array: "))
+	list_for_array.append(new_num)
+	new_length = len(list_for_array)
+	generate_shapes(array_shapes,new_length)
+
+print("Shapes available are: ")
+for i,shape in enumerate(array_shapes) :
+	print(i,shape)
 
 shape_index = int(input("Enter index of shape you wanted: "))
 print(np.array(list_for_array).reshape(array_shapes[shape_index][0],array_shapes[shape_index][1]))
