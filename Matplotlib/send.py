@@ -8,7 +8,7 @@ a="hiiii this is my naeme"
 b=a.encode('utf-8')
 
 while True:
-	sleep(3)
+	sleep(2)
 	s.sendto(b,("127.0.0.1",9999))
 
 
