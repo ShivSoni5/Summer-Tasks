@@ -10,7 +10,7 @@ while(cap.isOpened()):
     i+=1
     ret, frame = cap.read()
 
-    cv.imwrite('/home/raj/Pictures/mysnaps/snap'+str(i)+'.png',frame)
+    cv.imwrite(f'/home/raj/Pictures/mysnaps/snap{i}.png',frame)
 
     cv.imshow('my_video',frame)
     if cv.waitKey(1) & 0xFF == 27:
