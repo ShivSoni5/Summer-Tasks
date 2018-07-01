@@ -58,7 +58,28 @@ def calculate_class_score(sentence, class_name, show_details=True):
 
     return score
 
+'''
 sentence = "good day for us to have lunch?"
 
 for c in class_words.keys():
     print (f'Class: {c} Score: {calculate_class_score(sentence, c)}\n')
+'''
+
+def classify(sentence):
+    high_class = None
+    high_score = 0
+
+    for c in class_words.keys():
+        score = calculate_class_score(sentence, c, show_details=False)
+        if score > high_score:
+            high_class, high_score = c, score
+
+    return high_class, high_score
+
+if __name__ == '__main__':
+    print(classify('make me some lunch?'))
+    print(classify('sudo make me a sandwich'))
+    print(classify('take care'))
+    print(classify('talk to you later'))
+    print(classify('who are you'))
+    print(classify('am i crazy?'))
