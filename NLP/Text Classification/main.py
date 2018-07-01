@@ -20,4 +20,29 @@ training_data.append({"class":"sandwich", "sentence":"make me a sandwich"})
 training_data.append({"class":"sandwich", "sentence":"can you make a sandwich?"})
 training_data.append({"class":"sandwich", "sentence":"having a sandwich today?"})
 training_data.append({"class":"sandwich", "sentence":"what's for lunch?"})
-print ("%s sentences of training data" % len(training_data))
+#print (f"{len(training_data)} sentences of training data")
+
+corpus_words = {}
+class_words = {}
+
+classes = list(set([a['class'] for a in training_data]))
+#print (classes)
+
+for c in classes:
+    # prepare a list of words within each class
+    class_words[c] = []
+
+# loop through each sentence in our traning data
+for data in training_data:
+    for word in word_tokenize(data['sentence']):
+        if word not in ["?", "'s"]:
+            stemmed_word = stemmer.stem(word.lower())
+            if stemmed_word not in corpus_words:
+                corpus_words[stemmed_word] = 1
+            else:
+                corpus_words[stemmed_word] += 1
+
+            class_words[data['class']].extend([stemmed_word])
+
+print (f'Cospus words and counts: {corpus_words}\n')
+print (f'Class words: {class_words}')
