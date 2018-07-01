@@ -51,10 +51,10 @@ def calculate_class_score(sentence, class_name, show_details=True):
     score = 0
     for word in word_tokenize(sentence):
         if stemmer.stem(word.lower()) in class_words[class_name]:
-            score += 1
+            score += (1 / corpus_words[stemmer.stem(word.lower())])
 
             if show_details:
-                print (f"  match: {stemmer.stem(word.lower())}")
+                print (f"  match: {stemmer.stem(word.lower())} ({1/corpus_words[stemmer.stem(word.lower())]})")
 
     return score
 
