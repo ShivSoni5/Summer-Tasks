@@ -44,5 +44,21 @@ for data in training_data:
 
             class_words[data['class']].extend([stemmed_word])
 
-print (f'Cospus words and counts: {corpus_words}\n')
-print (f'Class words: {class_words}')
+#print (f'Cospus words and counts: {corpus_words}\n')
+#print (f'Class words: {class_words}')
+
+def calculate_class_score(sentence, class_name, show_details=True):
+    score = 0
+    for word in word_tokenize(sentence):
+        if stemmer.stem(word.lower()) in class_words[class_name]:
+            score += 1
+
+            if show_details:
+                print (f"  match: {stemmer.stem(word.lower())}")
+
+    return score
+
+sentence = "good day for us to have lunch?"
+
+for c in class_words.keys():
+    print (f'Class: {c} Score: {calculate_class_score(sentence, c)}\n')
