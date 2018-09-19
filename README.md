@@ -3,7 +3,7 @@
 ## Pandas
 
 ```sh
-$ pip install pandas
+$ pip3 install pandas
 ```
 
 ### Excel
